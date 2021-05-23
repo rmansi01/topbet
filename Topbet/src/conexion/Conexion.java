@@ -12,11 +12,11 @@ public class Conexion {
 		
 		try {
 			 Class.forName("com.mysql.jdbc.Driver");
-			this.conexion = DriverManager.getConnection(URL,"topbet","topbet");
+			this.conexion = DriverManager.getConnection(URL,"root","");
 		} catch (ClassNotFoundException e) {
 			System.out.println("No encuentra el driver");
 		} catch (SQLException e) {
-			System.out.println("Error estableciendo conexion kk");
+			System.out.println("Error estableciendo conexion");
 		}
 	}
 	public Connection getConexion(){
