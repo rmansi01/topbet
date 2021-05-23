@@ -16,7 +16,7 @@ public class Conexion {
 		} catch (ClassNotFoundException e) {
 			System.out.println("No encuentra el driver");
 		} catch (SQLException e) {
-			System.out.println("Error estableciendo conexion");
+			System.out.println("Error estableciendo conexion kk");
 		}
 	}
 	public Connection getConexion(){
