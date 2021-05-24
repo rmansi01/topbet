@@ -41,6 +41,11 @@ public class Controller extends HttpServlet {
 		} else if (op.equals("signin")) {
 			dispatcher = request.getRequestDispatcher("signin.jsp");
 			dispatcher.forward(request, response);
+		} else if (op.equals("damefutbol")) {
+			session.setAttribute("page", "apuestas");
+			session.setAttribute("watching", "partidos");
+			dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
 		}
 		
 	}

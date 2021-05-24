@@ -2,7 +2,9 @@
     pageEncoding="ISO-8859-1"%>
 <!doctype html>
 <html lang="es-ES">
-<% String pageLoaded = (String) session.getAttribute("page"); %>
+<% String pageLoaded = (String) session.getAttribute("page");
+   String watching = (String) session.getAttribute("watching");
+   String competicion = (String) request.getParameter("compet");%>
 <head>
     <title>TopBet - Las mejores apuestas del mercado</title>
     <!-- Required meta tags -->
@@ -31,13 +33,13 @@
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">F&uacute;tbol</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="#">Champions League</a>
-                        <a class="dropdown-item" href="#">Europa League</a>
+                        <a class="dropdown-item <%if (competicion != null && competicion.equals("ucl")){ %> active <%} %>>" href="Controller?op=damefutbol&compet=ucl">Champions League</a>
+                        <a class="dropdown-item <%if (competicion != null && competicion.equals("uel")){ %> active <%} %>" href="Controller?op=damefutbol&compet=uel">Europa League</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">LaLiga Santander</a>
-                        <a class="dropdown-item" href="#">LaLiga SmartBank</a>
-                        <a class="dropdown-item" href="#">Premier League</a>
-                        <a class="dropdown-item" href="#">Bundesliga</a>
+                        <a class="dropdown-item <%if (competicion != null && competicion.equals("liga")){ %> active <%} %>" href="Controller?op=damefutbol&compet=liga">LaLiga Santander</a>
+                        <a class="dropdown-item <%if (competicion != null && competicion.equals("liga2")){ %> active <%} %>" href="Controller?op=damefutbol&compet=liga2">LaLiga SmartBank</a>
+                        <a class="dropdown-item <%if (competicion != null && competicion.equals("epl")){ %> active <%} %>" href="Controller?op=damefutbol&compet=epl">Premier League</a>
+                        <a class="dropdown-item <%if (competicion != null && competicion.equals("bundesliga")){ %> active <%} %>" href="Controller?op=damefutbol&compet=bundesliga">Bundesliga</a>
 
                     </div>
                 </li>
@@ -143,9 +145,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-9 main">
+            	<% if (watching.equals("partidos")) {%>
                 <!-- Maestro apuestas partidos -->
                 <div class="container my-3">
-                    <h5 style="color: #fff;">LaLiga Santander</h5>
+                    <h5 style="color: #fff;"><%=competicion %></h5>
                     <table class="table  table-responsive table-striped table-dark">
                         <thead>
                             <tr>
@@ -173,7 +176,7 @@
                         </tbody>
                     </table>
                 </div>
-
+				<%} else { %>
                 <!-- Maestro carreras -->
                 <div class="container my-3">
                     <h5 style="color: #fff;">Formula 1</h5>
@@ -205,8 +208,10 @@
                         </tbody>
                     </table>
                 </div>
+                <%} %>
             </div>
             <div class="col-md-3">
+            <% if (watching.equals("partidos")){ %>
                 <span style="color: #fff;" class="mt-3">Clasificaci&oacute;n</span>
                 <table class="table table-responsive p-0 m-0 table-sm table-dark">
                     <thead>
@@ -238,6 +243,7 @@
                         </tr>
                     </tbody>
                 </table>
+                <%} else { %>
                 <span style="color: #fff;">Mundial de pilotos</span>
                 <table class="table table-responsive p-0 m-0 mb-3 table-sm table-dark">
                     <thead>
@@ -279,7 +285,7 @@
                         </tr>
                     </tbody>
                 </table>
-
+				<%} %>
             </div>
         </div>
     </div>
