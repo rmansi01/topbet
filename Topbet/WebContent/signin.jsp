@@ -73,70 +73,74 @@
     <!-- Pagina principal -->
     <div class="container my-5 text-white">
         <h4>Alta de usuario</h4>
-        <form method="POST" action="Controller?op=registrarme">
+        <form action="Controller?op=registrarme" method="POST">
             <div class="form-row">
                 <div class="col">
                     <label for="inputName">Nombre</label>
-                    <input type="text" class="form-control" id="inputName" placeholder="Severus">
+                    <input type="text" name="name" class="form-control" id="inputName" placeholder="Severus">
                 </div>
                 <div class="col">
                     <label for="inputSurname">Apellidos</label>
-                    <input type="text" class="form-control" id="inputSurname" placeholder="Snape">
+                    <input type="text" name="surname" class="form-control" id="inputSurname" placeholder="Snape">
+                </div>
+                <div class="col">
+                    <label for="nickname">Nombre de usuario</label>
+                    <input type="text" name="nickname" class="form-control" id="nickname" placeholder="Snivelis">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputEmail">Email</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="severus.snape@hogwarts.com">
+                    <input type="email" class="form-control" name="mail" id="inputEmail" placeholder="severus.snape@hogwarts.com">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputNif">NIF</label>
-                            <input type="text" class="form-control" id="inputNif">
+                            <input type="text" class="form-control" name="nif" id="inputNif">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPhone">Tel&eacute;fono</label>
-                            <input type="tel" class="form-control" id="inputPhone">
+                            <input type="tel" class="form-control" name="phone" id="inputPhone">
                         </div>
                     </div>
 
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputPassword">Contrase&ntilde;a</label>
-                    <input type="password" class="form-control" id="inputPassword">
+                    <input type="password" name="password" class="form-control" id="inputPassword">
                     <label for="inputCheckPass">Confirmar contrase&ntilde;a</label>
-                    <input type="password" class="form-control" id="inputCheckPass" />
+                    <input type="password" name="checkPass" class="form-control" id="inputCheckPass" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputAddress">Direcci&oacute;n</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="Pº de la Castellana, 81">
+                <input type="text" class="form-control" name="address" id="inputAddress" placeholder="Pº de la Castellana, 81">
             </div>
             <div class="form-group">
                 <label for="inputAddress2">Direcci&oacute;n 2</label>
-                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartmento, estudio o planta">
+                <input type="text" class="form-control" name="address2" id="inputAddress2" placeholder="Apartmento, estudio o planta">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputCity">Ciudad</label>
-                    <input type="text" class="form-control" id="inputCity" placeholder="Madrid">
+                    <input type="text" class="form-control" name="city" id="inputCity" placeholder="Madrid">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputCountry">Pa&iacute;s</label>
-                    <input type="text" class="form-control" id="inputCountry" placeholder="Espa&ntilde;a">
+                    <input type="text" class="form-control" id="inputCountry" name="country" placeholder="Espa&ntilde;a">
                 </div>
                 <div class="form-group col-md-2">
                     <label for="inputZip">Zip</label>
-                    <input type="text" class="form-control" id="inputZip">
+                    <input type="text" class="form-control" id="inputZip" name="zip">
                 </div>
                 <div class="form-group col-12">
                     <label for="inputBirthday">Fecha de nacimiento</label>
-                    <input type="date" class="form-control" id="inputBirthday">
+                    <input type="date" class="form-control" id="inputBirthday" name="birthday">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Registrarme</button>
         </form>
     </div>
-    </div>
+    
     <footer class="p-2">
         <div class="container">
             <div class="row">

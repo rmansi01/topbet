@@ -1,14 +1,15 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Usuario {
 	protected int id, nBonos;
-	protected String nombre, nickname, phone, nif, apellidos, pass, mail;
+	protected String nombre, nickname, phone, nif, apellidos, pass, mail, dir1, dir2, c_postal, ciudad, pais;
 	protected Date fNacimiento;
 	
 	public Usuario(int id, int nBonos, String nombre, String nickname, String phone, String nif, String apellidos,
-			String pass, String mail, Date fNacimiento) {
+			String pass, String mail, Date fNacimiento, String dir1, String dir2, String c_postal, String ciudad, String pais) {
 		super();
 		this.id = id;
 		this.nBonos = nBonos;
@@ -20,12 +21,57 @@ public class Usuario {
 		this.pass = pass;
 		this.mail = mail;
 		this.fNacimiento = fNacimiento;
+		this.dir1 = dir1;
+		this.dir2 = dir2;
+		this.c_postal = c_postal;
+		this.ciudad = ciudad;
+		this.pais = pais;
 	}
 	
 	public int getId() {
 		return id;
 	}
 
+
+	public String getDir1() {
+		return dir1;
+	}
+
+	public void setDir1(String dir1) {
+		this.dir1 = dir1;
+	}
+
+	public String getDir2() {
+		return dir2;
+	}
+
+	public void setDir2(String dir2) {
+		this.dir2 = dir2;
+	}
+
+	public String getC_postal() {
+		return c_postal;
+	}
+
+	public void setC_postal(String c_postal) {
+		this.c_postal = c_postal;
+	}
+
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	public String getPais() {
+		return pais;
+	}
+
+	public void setPais(String pais) {
+		this.pais = pais;
+	}
 
 	public void setId(int id) {
 		this.id = id;

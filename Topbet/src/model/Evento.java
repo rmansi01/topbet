@@ -9,11 +9,11 @@ public class Evento {
 	private List<Apuesta> apuestas;
 	private Date fecha;
 	private Competicion competicion;
-	public Evento(int cEvento, int jornada, int apuesta, String nombre, Date fecha, Competicion competicion) {
+	public Evento(int cEvento, int jornada, List<Apuesta> apuestas, String nombre, Date fecha, Competicion competicion) {
 		super();
 		this.cEvento = cEvento;
 		this.jornada = jornada;
-		this.apuesta = apuesta;
+		this.apuestas = apuestas;
 		this.nombre = nombre;
 		this.fecha = fecha;
 		this.competicion = competicion;
@@ -30,11 +30,11 @@ public class Evento {
 	public void setJornada(int jornada) {
 		this.jornada = jornada;
 	}
-	public int getApuesta() {
-		return apuesta;
+	public List<Apuesta> getApuestas() {
+		return apuestas;
 	}
-	public void setApuesta(int apuesta) {
-		this.apuesta = apuesta;
+	public void setApuesta(List<Apuesta> apuestas) {
+		this.apuestas = apuestas;
 	}
 	public String getNombre() {
 		return nombre;
