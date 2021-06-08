@@ -1,10 +1,12 @@
+<%@page import="model.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!doctype html>
 <html lang="es-ES">
 <% String pageLoaded = (String) session.getAttribute("page");
    String watching = (String) session.getAttribute("watching");
-   String competicion = (String) request.getParameter("compet");%>
+   String competicion = (String) request.getParameter("compet");
+   Usuario user = (Usuario) session.getAttribute("user");%>
 <head>
     <title>TopBet - Las mejores apuestas del mercado</title>
     <!-- Required meta tags -->
@@ -20,14 +22,14 @@
 
 <body class="bg-dark">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a class="navbar-brand  <%if (pageLoaded.equals("home")){ %> active <%} %>" href="#">Navbar</a>
+        <a class="navbar-brand " href="Controller?op=inicio">TopBet</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="Controller?op=inicio">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link  <%if (pageLoaded.equals("home")){ %> active <%} %>" href="Controller?op=inicio">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
@@ -60,16 +62,20 @@
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Motor</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="#">F1</a>
-                        <a class="dropdown-item" href="#">MotoGP</a>
+                        <a class="dropdown-item" href="Controller?op=damef1">F1</a>
+                        <a class="dropdown-item" href="Controller?op=megustanlasmotos">MotoGP</a>
                     </div>
                 </li>
             </ul>
+            <%if (user != null) { %>
             <a href="pagar.html" class="btn btn-primary mx-1"><i class="fas fa-credit-card"></i> Mis fondos</a>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLogin"><i
-                    class="fas fa-sign-out-alt"></i> Cerrar sesi&oacute;n</button>
+            <a href="Controller?op=perfil" class="btn btn-primary mx-1"><i class="fas fa-credit-card"></i> Mi perfil</a>
+            <a href="Controller?op=logout" class="btn mx-1 btn-primary"><i
+                    class="fas fa-sign-out-alt"></i> Cerrar sesi&oacute;n</a>
+                    <%} else { %>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLogin"><i
                     class="fas fa-user-circle"></i></button>
+                    <%} %>
         </div>
     </nav>
     <% if (pageLoaded.equals("home")){ %>
@@ -165,10 +171,10 @@
                                 <td>2</td>
                                 <td><img src="img/escudosFutbol/farsa.png" class="escudoTabla"></td>
                                 <td>22/10/2021 - 21:00</td>
-                                <td style="text-align: right;"><button class="btn-primary btn btn-sm"
+                                <td style="text-align: right;"><% if (user!= null ){ %><button class="btn-primary btn btn-sm"
                                         data-toggle="modal" data-target="#modalApuesta"><i
                                             class="fas fa-credit-card"></i> Apuesta</button>
-                                </td>
+                                </td> <%} %>
                                 <td> <button class="btn-primary btn-sm btn" data-toggle="modal"
                                         data-target="#modalPartido">Seguir en
                                         directo</button></td>
@@ -199,9 +205,9 @@
                                 <td>Soleado - 25º C</td>
                                 <td>Carlos Sainz (ESP)</td>
                                 <td><img src="img/escudosF1/ferrari.png" class="escudoTabla"></td>
-                                <td><button class="btn-primary btn btn-sm" data-toggle="modal"
+                                <td><%if (user != null){ %><button class="btn-primary btn btn-sm" data-toggle="modal"
                                         data-target="#modalApuestaRace">
-                                        <i class="fas fa-credit-card"></i> Apuesta</button></td>
+                                        <i class="fas fa-credit-card"></i> Apuesta</button></td><%} %>
                                 <td><button class="btn-primary btn btn-sm" data-toggle="modal"
                                         data-target="#modalRace"><i class="fas fa-eye"></i> Ver</button></td>
                             </tr>
@@ -326,16 +332,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="GET" action="Controller?op=login">
+                    <form method="POST" action="Controller?op=login">
                         <div class="form-group">
                             <label for="inputEmail">Email address</label>
-                            <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+                            <input type="email" name="mail" class="form-control" id="inputEmail" aria-describedby="emailHelp">
                             <small id="emailHelp" class="form-text text-muted">Nunca compartiremos tus datos personales
                                 con terceros.</small>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword">Password</label>
-                            <input type="password" class="form-control" id="inputPassword">
+                            <input type="password" name="pass" class="form-control" id="inputPassword">
                         </div>
                         <small>¿A&uacute;n no tienes cuenta?<a href="Controller?op=signin">Reg&iacute;strate</a></small>
                 </div>

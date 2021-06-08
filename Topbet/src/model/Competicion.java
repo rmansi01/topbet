@@ -7,17 +7,16 @@ public class Competicion {
 	private String nombre, temporada;
 	private Deporte deporte;
 	private List<Equipo> equipos;
-	private List<Deportista> jugadores;
+
 	
-	public Competicion(int id, String nombre, String temporada, Deporte deporte, List<Equipo> equipos,
-			List<Deportista> jugadores) {
+	public Competicion(int id, String nombre, String temporada, Deporte deporte, List<Equipo> equipos) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.temporada = temporada;
 		this.deporte = deporte;
 		this.equipos = equipos;
-		this.jugadores = jugadores;
+
 	}
 	
 	
@@ -27,12 +26,7 @@ public class Competicion {
 	public void setEquipos(List<Equipo> equipos) {
 		this.equipos = equipos;
 	}
-	public List<Deportista> getJugadores() {
-		return jugadores;
-	}
-	public void setJugadores(List<Deportista> jugadores) {
-		this.jugadores = jugadores;
-	}
+	
 	
 	public int getId() {
 		return id;

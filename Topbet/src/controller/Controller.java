@@ -85,6 +85,76 @@ public class Controller extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 
+		} else if (op.equals("login")) {
+			String mail = request.getParameter("mail");
+			String pass = request.getParameter("pass");
+			Usuario user = daou.getUsuario(mail);
+			System.out.println(user.toString());
+			if (user != null && user.checkPassword(pass))
+				session.setAttribute("user", user);
+			else 
+				request.setAttribute("error", "Contrase&ntilde;a incorrecta");
+			
+			dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
+		} else if (op.equals("logout")) {
+			session.setAttribute("user", null);
+			System.out.println("Sesion cerrada con exito");
+			dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
+		} else if (op.equals("damef1")) {
+			session.setAttribute("watching", "f1");
+			session.setAttribute("page", "apuestas");
+			dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
+		} else if (op.equals("perfil")) {
+			dispatcher = request.getRequestDispatcher("signin.jsp");
+			dispatcher.forward(request, response);
+		} else if (op.equals("updateProfile")) {
+			try {
+				String nombre = request.getParameter("name");
+				String apellidos = request.getParameter("surname");
+				String nick = request.getParameter("nickname");
+				String mail = request.getParameter("mail");
+				String nif = request.getParameter("nif");
+				String phone = request.getParameter("phone");
+				String password = request.getParameter("password"), current = request.getParameter("currentPassword");
+				boolean passwordChanged = true;
+				if (password.equals(""))
+					passwordChanged = false;
+				String direccion1 = request.getParameter("address");
+				String direccion2 = request.getParameter("address2");
+				String ciudad = request.getParameter("city");
+				System.out.println(ciudad);
+				String pais = request.getParameter("country");
+				String f_nacimiento = request.getParameter("birthday");
+				Date birth;
+				birth = new SimpleDateFormat("yyyy-MM-dd").parse(f_nacimiento);
+				String c_postal = request.getParameter("zip");
+				Usuario user = (Usuario) session.getAttribute("user");
+				user.setNombre(nombre);
+				user.setApellidos(apellidos);
+				user.setNickname(nick);
+				user.setMail(mail);
+				user.setNif(nif);
+				user.setPhone(phone);
+				user.setDir1(direccion1);
+				user.setDir2(direccion2);
+				user.setPais(pais);
+				user.setfNacimiento(birth);
+				user.setPass(current, password);
+				if (user.checkPassword(current))
+					if (passwordChanged) {
+						daou.actualizaUsuarioWithPass(user, false, password);
+					} else {
+						daou.actualizaUsuarioNoPass(user, false);
+					}
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
 		}
 
 	}

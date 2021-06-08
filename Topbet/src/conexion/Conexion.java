@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexion {
-	private static String URL="jdbc:mysql://bbdd.fitargos.es"; // He llevado la base de datos a un hosting que tengo por ahi para unificar la BBDD
+	private static String URL="jdbc:mysql://bbdd.fitargos.es/ddb170696"; // He llevado la base de datos a un hosting que tengo por ahi para unificar la BBDD
 	private Connection conexion = null;
 	
 	public Conexion(){
@@ -16,7 +16,7 @@ public class Conexion {
 		} catch (ClassNotFoundException e) {
 			System.out.println("No encuentra el driver");
 		} catch (SQLException e) {
-			System.out.println("Error estableciendo conexion");
+			System.out.println("Error estableciendo conexion" + e.getMessage());
 		}
 	}
 	public Connection getConexion(){

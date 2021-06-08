@@ -1,8 +1,10 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="model.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!doctype html>
 <html lang="es-ES">
-
+<% Usuario user = (Usuario) session.getAttribute("user"); %>
 <head>
     <title>TopBet - Las mejores apuestas del mercado</title>
     <!-- Required meta tags -->
@@ -25,19 +27,19 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="Controller?op=inicio">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">F&uacute;tbol</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="#">Champions League</a>
-                        <a class="dropdown-item" href="#">Europa League</a>
+                        <a class="dropdown-item" href="Controller?op=damefutbol&compet=ucl">Champions League</a>
+                        <a class="dropdown-item" href="Controller?op=damefutbol&compet=uel">Europa League</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">LaLiga Santander</a>
-                        <a class="dropdown-item" href="#">LaLiga SmartBank</a>
-                        <a class="dropdown-item" href="#">Premier League</a>
-                        <a class="dropdown-item" href="#">Bundesliga</a>
+                        <a class="dropdown-item" href="Controller?op=damefutbol&op=liga">LaLiga Santander</a>
+                        <a class="dropdown-item" href="Controller?op=damefutbol&op=liga2">LaLiga SmartBank</a>
+                        <a class="dropdown-item" href="Controller?op=damefutbol&op=epl">Premier League</a>
+                        <a class="dropdown-item" href="Controller?op=damefutbol&op=bundesliga">Bundesliga</a>
 
                     </div>
                 </li>
@@ -73,33 +75,33 @@
     <!-- Pagina principal -->
     <div class="container my-5 text-white">
         <h4>Alta de usuario</h4>
-        <form action="Controller?op=registrarme" method="POST">
+        <form action="<%if (user == null) {%>Controller?op=registrarme <%} else { %> Controller?op=updateProfile<% } %>" method="POST">
             <div class="form-row">
                 <div class="col">
                     <label for="inputName">Nombre</label>
-                    <input type="text" name="name" class="form-control" id="inputName" placeholder="Severus">
+                    <input type="text" name="name" class="form-control" id="inputName" placeholder="Severus" <%if (user != null){ %> value="<%=user.getNombre()%>"<%} %>>
                 </div>
                 <div class="col">
                     <label for="inputSurname">Apellidos</label>
-                    <input type="text" name="surname" class="form-control" id="inputSurname" placeholder="Snape">
+                    <input type="text" name="surname" class="form-control" id="inputSurname"<%if (user != null){ %> value="<%=user.getApellidos()%>"<%} %> placeholder="Snape">
                 </div>
                 <div class="col">
                     <label for="nickname">Nombre de usuario</label>
-                    <input type="text" name="nickname" class="form-control" id="nickname" placeholder="Snivelis">
+                    <input type="text" name="nickname" class="form-control" id="nickname" <%if (user != null){ %> value="<%=user.getNickname()%>"<%} %> placeholder="Snivelis">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputEmail">Email</label>
-                    <input type="email" class="form-control" name="mail" id="inputEmail" placeholder="severus.snape@hogwarts.com">
+                    <input type="email" class="form-control" name="mail" id="inputEmail" <%if (user != null){ %> value="<%=user.getMail()%>"<%} %> placeholder="severus.snape@hogwarts.com">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputNif">NIF</label>
-                            <input type="text" class="form-control" name="nif" id="inputNif">
+                            <input type="text" class="form-control" name="nif" <%if (user != null){ %> value="<%=user.getNif()%>"<%} %> id="inputNif">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPhone">Tel&eacute;fono</label>
-                            <input type="tel" class="form-control" name="phone" id="inputPhone">
+                            <input type="tel" class="form-control" name="phone" <%if (user != null){ %> value="<%=user.getPhone()%>"<%} %> id="inputPhone">
                         </div>
                     </div>
 
@@ -113,31 +115,42 @@
             </div>
             <div class="form-group">
                 <label for="inputAddress">Direcci&oacute;n</label>
-                <input type="text" class="form-control" name="address" id="inputAddress" placeholder="Pº de la Castellana, 81">
+                <input type="text" class="form-control" name="address" <%if (user != null){ %> value="<%=user.getDir1()%>"<%} %> id="inputAddress" placeholder="Pº de la Castellana, 81">
             </div>
             <div class="form-group">
                 <label for="inputAddress2">Direcci&oacute;n 2</label>
-                <input type="text" class="form-control" name="address2" id="inputAddress2" placeholder="Apartmento, estudio o planta">
+                <input type="text" class="form-control" name="address2" <%if (user != null){ %> value="<%=user.getDir2()%>"<%} %> id="inputAddress2" placeholder="Apartmento, estudio o planta">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputCity">Ciudad</label>
-                    <input type="text" class="form-control" name="city" id="inputCity" placeholder="Madrid">
+                    <input type="text" class="form-control" name="city" <%if (user != null){ %> value="<%=user.getCiudad()%>"<%} %> id="inputCity" placeholder="Madrid">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputCountry">Pa&iacute;s</label>
-                    <input type="text" class="form-control" id="inputCountry" name="country" placeholder="Espa&ntilde;a">
+                    <input type="text" class="form-control" id="inputCountry"<%if (user != null){ %> value="<%=user.getPais()%>"<%} %> name="country" placeholder="Espa&ntilde;a">
                 </div>
                 <div class="form-group col-md-2">
                     <label for="inputZip">Zip</label>
-                    <input type="text" class="form-control" id="inputZip" name="zip">
+                    <input type="text" class="form-control" id="inputZip" <%if (user != null){ %> value="<%=user.getC_postal()%>"<%} %> name="zip">
                 </div>
                 <div class="form-group col-12">
                     <label for="inputBirthday">Fecha de nacimiento</label>
-                    <input type="date" class="form-control" id="inputBirthday" name="birthday">
+                    <input type="date" class="form-control" id="inputBirthday" <%if (user != null){ %> value="<%=new SimpleDateFormat("dd-MM-yyyy").format(user.getfNacimiento())%>"<%} %> name="birthday">
                 </div>
             </div>
+            <% if (user != null){ %>
+            <div class="form-row">
+            	<div class="col-md-9">
+            		<input type="password" class="form-control" id="inputCurrentPass" placeholder="Contrase&ntilde;a actual" name="currentPass">
+            	</div>
+            	<div class="col-md-3">
+            		<button type="submit" class="btn btn-primary">Actualizar mi perfil</button>
+            	</div>
+            </div>
+            <%} else { %>
             <button type="submit" class="btn btn-primary">Registrarme</button>
+            <%} %>
         </form>
     </div>
     
