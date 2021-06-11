@@ -197,6 +197,25 @@ public class Controller extends HttpServlet {
 			
 			dispatcher = request.getRequestDispatcher("payments.jsp");
 			dispatcher.forward(request, response);
+		} else if (op.equals("newCard")) {
+			
+			try {
+				Usuario usuario = (Usuario) session.getAttribute("user");
+				String titular = request.getParameter("titular");
+				String numero = request.getParameter("numero");
+				Date caducidad = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("caducidad"));
+				int cvv = Integer.parseInt(request.getParameter("cvv"));
+				Tarjeta tarjeta = new Tarjeta(0, numero, titular,cvv, caducidad.getMonth(), caducidad.getYear() , usuario);
+				daot.insertaTarjeta(tarjeta);
+				dispatcher = request.getRequestDispatcher("payments.jsp");
+				dispatcher.forward(request, response);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		} else if (op.equals("removeCard")) {
+			
 		}
 
 	}

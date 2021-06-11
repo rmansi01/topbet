@@ -25,7 +25,7 @@ public class DAOTarjeta {
 	}
 	
 	// insert
-		public void insertaClase(Tarjeta tarjeta) {
+		public void insertaTarjeta(Tarjeta tarjeta) {
 			// No introduzco las claves porque es autonumerica
 			Connection con = new Conexion().getConexion();
 			try {
