@@ -43,33 +43,37 @@
 
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Tenis</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Baloncesto</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="#">Turkish Euroleague</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Liga Endesa</a>
-                        <a class="dropdown-item" href="#">NBA</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Motor</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="#">F1</a>
-                        <a class="dropdown-item" href="#">MotoGP</a>
-                    </div>
-                </li>
-            </ul>
+                <li class="nav-item"><a class="nav-link"
+					href="Controller?op=damefutbol&compet=tenis">Tenis</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="dropdownId"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Baloncesto</a>
+					<div class="dropdown-menu" aria-labelledby="dropdownId">
+						<a class="dropdown-item"
+							href="Controller?op=damefutbol&compet=euroleagueBasket">Turkish
+							Euroleague</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item"
+							href="Controller?op=damefutbol&compet=ligaendesa">Liga Endesa</a>
+						<a class="dropdown-item"
+							href="Controller?op=damefutbol&compet=nba">NBA</a>
+					</div></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="dropdownId"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Motor</a>
+					<div class="dropdown-menu" aria-labelledby="dropdownId">
+						<a class="dropdown-item" href="Controller?op=damef1">F1</a> <a
+							class="dropdown-item" href="Controller?op=megustanlasmotos">MotoGP</a>
+					</div></li>
+			</ul>
+            <% if (user != null){ %>
             <a href="pagar.html" class="btn btn-primary mx-1"><i class="fas fa-credit-card"></i> Mis fondos</a>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLogin"><i
                 class="fas fa-sign-out-alt"></i> Cerrar sesi&oacute;n</button>
+                <%} else { %>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLogin"><i
                     class="fas fa-user-circle"></i></button>
+                    <%} %>
         </div>
     </nav>
     <!-- Pagina principal -->

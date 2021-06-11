@@ -4,12 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 public class Evento {
-	private int cEvento, jornada;
+	private int cEvento;
+	private int jornada;
 	private String nombre;
 	private List<Apuesta> apuestas;
 	private Date fecha;
+	private List<Equipo> equipos;
 	private Competicion competicion;
-	public Evento(int cEvento, int jornada, List<Apuesta> apuestas, String nombre, Date fecha, Competicion competicion) {
+	public Evento(int cEvento, int jornada, List<Apuesta> apuestas, String nombre, Date fecha, Competicion competicion, List<Equipo> equipos) {
 		super();
 		this.cEvento = cEvento;
 		this.jornada = jornada;
@@ -17,7 +19,25 @@ public class Evento {
 		this.nombre = nombre;
 		this.fecha = fecha;
 		this.competicion = competicion;
+		this.equipos = equipos;
 	}
+	
+	
+	public List<Equipo> getEquipos() {
+		return equipos;
+	}
+
+
+	public void setEquipos(List<Equipo> equipos) {
+		this.equipos = equipos;
+	}
+
+
+	public void setApuestas(List<Apuesta> apuestas) {
+		this.apuestas = apuestas;
+	}
+
+
 	public int getcEvento() {
 		return cEvento;
 	}

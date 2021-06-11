@@ -5,10 +5,10 @@ import java.util.List;
 
 public class EventoMotor extends Evento{
 	private List<Piloto> parrillaInicial, resultado;
-
+	
 	public EventoMotor(int cEvento, int jornada, List<Apuesta> apuestas, String nombre, Date fecha,
-			Competicion competicion, List<Piloto> parrillaInicial, List<Piloto> resultado) {
-		super(cEvento, jornada, apuestas, nombre, fecha, competicion);
+			List<Equipo> equipos, Competicion competicion, List<Piloto> parrillaInicial, List<Piloto> resultado) {
+		super(cEvento, jornada, apuestas, nombre, fecha, competicion, equipos);
 		this.parrillaInicial = parrillaInicial;
 		this.resultado = resultado;
 	}

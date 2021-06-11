@@ -4,12 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Usuario {
-	protected int id, nBonos;
-	protected String nombre, nickname, phone, nif, apellidos, pass, mail, dir1, dir2, c_postal, ciudad, pais;
-	protected Date fNacimiento;
-	
+	private int id, nBonos;
+	private String nombre, nickname, phone, nif, apellidos, pass, mail, dir1, dir2, c_postal, ciudad, pais;
+	private Date fNacimiento;
+	private boolean banned;
 	public Usuario(int id, int nBonos, String nombre, String nickname, String phone, String nif, String apellidos,
-			String pass, String mail, Date fNacimiento, String dir1, String dir2, String c_postal, String ciudad, String pais) {
+			String pass, String mail, Date fNacimiento, String dir1, String dir2, String c_postal, String ciudad, String pais, boolean banned) {
 		super();
 		this.id = id;
 		this.nBonos = nBonos;
@@ -26,8 +26,23 @@ public class Usuario {
 		this.c_postal = c_postal;
 		this.ciudad = ciudad;
 		this.pais = pais;
+		this.banned = banned;
 	}
 	
+	
+	
+	public boolean isBanned() {
+		return banned;
+	}
+
+
+
+	public void setBanned(boolean banned) {
+		this.banned = banned;
+	}
+
+
+
 	public int getId() {
 		return id;
 	}

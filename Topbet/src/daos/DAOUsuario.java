@@ -13,6 +13,19 @@ import conexion.Conexion;
 import model.Usuario;
 
 public class DAOUsuario {
+	
+	private static DAOUsuario daou = null;
+	
+	private DAOUsuario() {
+		
+	}
+	
+	public static DAOUsuario getDAOU() {
+		if (daou == null)
+			daou = new DAOUsuario();
+		return daou;
+	}
+	
 	// Operaciones CRUD
 	// Create
 	@SuppressWarnings("deprecation")
@@ -21,7 +34,7 @@ public class DAOUsuario {
 		Connection con = new Conexion().getConexion();
 		try {
 			String ordenSQL;
-			ordenSQL = "insert into Usuario values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			ordenSQL = "insert into Usuario values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement st = con.prepareStatement(ordenSQL);
 			st.setString(1, usuario.getNombre());
 			st.setString(2, usuario.getApellidos());
@@ -39,6 +52,7 @@ public class DAOUsuario {
 			st.setString(13, usuario.getCiudad());
 			st.setString(14, usuario.getC_postal());
 			st.setString(15, usuario.getPais());
+			st.setBoolean(16, false);
 			st.executeUpdate();
 			st.close();
 			con.close();
@@ -77,8 +91,9 @@ public class DAOUsuario {
 				String ciudad = rs.getString("ciudad");
 				String c_postal = rs.getString("c_postal");
 				String pais = rs.getString("Pais");
+				boolean banned = rs.getBoolean("banned");
 				lista.add(new Usuario(id, nBonos, name, nick, phone, nif, surname, password, mail, f_nacimiento, dir1,
-						dir2, ciudad, c_postal, pais));
+						dir2, ciudad, c_postal, pais, banned));
 			}
 			rs.close();
 			st.close();
@@ -116,12 +131,52 @@ public class DAOUsuario {
 				String ciudad = rs.getString("ciudad");
 				String c_postal = rs.getString("c_postal");
 				String pais = rs.getString("Pais");
-
+				boolean banned = rs.getBoolean("banned");
 				rs.close();
 				st.close();
 				con.close();
 				return new Usuario(id, nBonos, name, nick, phone, nif, surname, password, mail, f_nacimiento, dir1,
-						dir2, ciudad, c_postal, pais);
+						dir2, ciudad, c_postal, pais, banned);
+			}
+			return null;
+		} catch (SQLException e) {
+			System.out.println("Error al acceder a la BD: " + e.getMessage());
+			return null;
+		}
+	}
+	
+	public Usuario getUsuario(int id) {
+		ResultSet rs;
+		Connection con = new Conexion().getConexion();
+		Statement st;
+		String select = "select * from Usuario where c_usuario = " + id ;
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(select);
+
+			if (rs.next()) {
+//				int id = rs.getInt("c_usuario");
+				String name = rs.getString("nombre");
+				String surname = rs.getString("apellidos");
+				String password = rs.getString("password");
+				Boolean admin = rs.getBoolean("admin");
+				Date f_nacimiento = rs.getDate("f_nacimiento");
+				String mail = rs.getString("mail");
+				int nBonos = rs.getInt("n_bonos");
+				String nif = rs.getString("nif");
+				String phone = rs.getString("telefono");
+				String nick = rs.getString("nickname");
+				String dir1 = rs.getString("direccion1");
+				String dir2 = rs.getString("direcccion2");
+				String ciudad = rs.getString("ciudad");
+				String c_postal = rs.getString("c_postal");
+				String pais = rs.getString("Pais");
+				boolean banned = rs.getBoolean("banned");
+				rs.close();
+				st.close();
+				con.close();
+				return new Usuario(id, nBonos, name, nick, phone, nif, surname, password, mail, f_nacimiento, dir1,
+						dir2, ciudad, c_postal, pais, banned);
 			}
 			return null;
 		} catch (SQLException e) {
@@ -155,7 +210,7 @@ public class DAOUsuario {
 			st.setString(14, usuario.getPais());
 			actualizados = st.executeUpdate();
 			st.close();
-			con.close();
+			//con.close();
 		} catch (SQLException e) {
 			System.out.println("Error al actualizar datos enla BDs: " + e.getMessage());		}
 		return actualizados;
@@ -183,7 +238,7 @@ public class DAOUsuario {
 			st.setString(13, usuario.getPais());
 			actualizados = st.executeUpdate();
 			st.close();
-			con.close();
+			//con.close();
 		} catch (SQLException e) {
 			System.out.println("Error al actualizar datos enla BDs: " + e.getMessage());		}
 		return actualizados;

@@ -6,13 +6,28 @@ public class Deportista {
 	private int id;
 	private String nombre, apellidos;
 	private Date fechaNacimiento;
-	public Deportista(int id, String nombre, String apellidos, Date fechaNacimiento) {
+	private Equipo equipo;
+	
+	public Deportista(int id, String nombre, String apellidos, Date fechaNacimiento, Equipo equipo) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.fechaNacimiento = fechaNacimiento;
+		this.equipo = equipo;
 	}
+	
+	
+	public Equipo getEquipo() {
+		return equipo;
+	}
+
+
+	public void setEquipo(Equipo equipo) {
+		this.equipo = equipo;
+	}
+
+
 	public int getId() {
 		return id;
 	}
