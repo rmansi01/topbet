@@ -18,52 +18,56 @@
 
 <body class="bg-dark">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="Controller?op=inicio">Navbar</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="Controller?op=inicio">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">F&uacute;tbol</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="#">Champions League</a>
-                        <a class="dropdown-item" href="#">Europa League</a>
+                        <a class="dropdown-item" href="Controller?op=damefutbol&compet=ucl">Champions League</a>
+                        <a class="dropdown-item" href="Controller?op=damefutbol&compet=uel">Europa League</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">LaLiga Santander</a>
-                        <a class="dropdown-item" href="#">LaLiga SmartBank</a>
-                        <a class="dropdown-item" href="#">Premier League</a>
-                        <a class="dropdown-item" href="#">Bundesliga</a>
+                        <a class="dropdown-item" href="Controller?op=damefutbol&op=liga">LaLiga Santander</a>
+                        <a class="dropdown-item" href="Controller?op=damefutbol&op=liga2">LaLiga SmartBank</a>
+                        <a class="dropdown-item" href="Controller?op=damefutbol&op=epl">Premier League</a>
+                        <a class="dropdown-item" href="Controller?op=damefutbol&op=bundesliga">Bundesliga</a>
 
                     </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Tenis</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Baloncesto</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="#">Turkish Euroleague</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Liga Endesa</a>
-                        <a class="dropdown-item" href="#">NBA</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Motor</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="#">F1</a>
-                        <a class="dropdown-item" href="#">MotoGP</a>
-                    </div>
-                </li>
-            </ul>
-            <a href="pagar.html" class="btn btn-primary mx-1"><i class="fas fa-credit-card"></i> Mis fondos</a>
+               <li class="nav-item"><a class="nav-link"
+					href="Controller?op=damefutbol&compet=tenis">Tenis</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="dropdownId"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Baloncesto</a>
+					<div class="dropdown-menu" aria-labelledby="dropdownId">
+						<a class="dropdown-item"
+							href="Controller?op=damefutbol&compet=euroleagueBasket">Turkish
+							Euroleague</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item"
+							href="Controller?op=damefutbol&compet=ligaendesa">Liga Endesa</a>
+						<a class="dropdown-item"
+							href="Controller?op=damefutbol&compet=nba">NBA</a>
+					</div></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="dropdownId"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Motor</a>
+					<div class="dropdown-menu" aria-labelledby="dropdownId">
+						<a class="dropdown-item" href="Controller?op=damef1">F1</a> <a
+							class="dropdown-item" href="Controller?op=megustanlasmotos">MotoGP</a>
+					</div></li>
+			</ul>
+            <a href="Controller?op=cards" class="btn btn-primary mx-1"><i class="fas fa-credit-card"></i> Mis fondos</a>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLogin"><i
                     class="fas fa-sign-out-alt"></i> Cerrar sesi&oacute;n</button>
         </div>

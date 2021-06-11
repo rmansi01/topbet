@@ -67,7 +67,7 @@
 					</div></li>
 			</ul>
             <% if (user != null){ %>
-            <a href="pagar.html" class="btn btn-primary mx-1"><i class="fas fa-credit-card"></i> Mis fondos</a>
+            <a href="Controller?op=cards" class="btn btn-primary mx-1"><i class="fas fa-credit-card"></i> Mis fondos</a>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLogin"><i
                 class="fas fa-sign-out-alt"></i> Cerrar sesi&oacute;n</button>
                 <%} else { %>

@@ -16,14 +16,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import daos.DAOCompeticion;
+import daos.DAOCuenta;
 import daos.DAOEquipo;
 
 import daos.DAOEvento;
+import daos.DAOTarjeta;
 import daos.DAOUsuario;
+import model.CuentaBancaria;
 import model.Deporte;
 import model.Equipo;
 import model.Evento;
 import model.EventoEquipos;
+import model.Tarjeta;
 import model.Usuario;
 
 /**
@@ -36,6 +40,8 @@ public class Controller extends HttpServlet {
 	DAOCompeticion daoc = DAOCompeticion.getDAOC();
 	DAOEquipo daoe = DAOEquipo.getDAOE();
 	DAOEvento daoev = DAOEvento.getDAOEvento();
+	DAOTarjeta daot = DAOTarjeta.getDAOT();
+	DAOCuenta daocu = DAOCuenta.getDAOC();
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -183,7 +189,14 @@ public class Controller extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 		} else if (op.equals("cards")) {
+			Usuario usuario = (Usuario) session.getAttribute("user");
+			List<Tarjeta> tarjetas = daot.listado(usuario);
+			List<CuentaBancaria> cuentas = daocu.listado(usuario);
+			session.setAttribute("tarjetas", tarjetas);
+			session.setAttribute("cuentas", cuentas);
 			
+			dispatcher = request.getRequestDispatcher("payments.jsp");
+			dispatcher.forward(request, response);
 		}
 
 	}
